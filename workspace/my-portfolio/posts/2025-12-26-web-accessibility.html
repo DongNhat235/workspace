@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Accessibility (A11y) cho web developers — những bước cơ bản" />
+  <title>Accessibility cho web developers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #98a0b3;
+      --accent: #6c8cff;
+      --glass: rgba(255,255,255,0.03);
+      --radius: 12px;
+      --maxw: 1000px;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: dark;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071027 0%,var(--bg) 100%);color:#e6eef8}
+    a{color:var(--accent);text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-weight:700;font-size:1.1rem}
+    nav{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;font-weight:600;border:0}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.45)}
+    .muted{color:var(--muted);font-size:0.95rem}
+    footer{padding:32px 0;color:var(--muted);text-align:center;font-size:0.9rem}
+    .author{display:flex;gap:12px;align-items:center;margin:12px 0}
+    @media (max-width:840px){nav{display:none}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand"><a href="/" style="color:inherit;text-decoration:none">Nguyễn Đông Nhật</a></div>
+      <nav>
+        <a href="/index.html#about">Về tôi</a>
+        <a href="/index.html#blog">Blog</a>
+        <a href="/index.html#projects">Dự án</a>
+        <a href="/index.html#contact" class="btn">Liên hệ</a>
+      </nav>
+    </header>
+
+    <main style="margin:32px 0">
+      <article class="card">
+        <div class="muted">26 Dec 2025 • Web</div>
+        <p class="post-tags" style="margin-top:8px"><strong>Tags:</strong> <span class="tag">Accessibility</span> <span class="tag">Web</span></p>
+        <h1>Tiếp cận Accessibility (A11y) cho web developers</h1>
+
+        <div class="author">
+          <img src="../avatar.jpg" alt="Nguyễn Đông Nhật — Ảnh đại diện" style="width:56px;height:56px;border-radius:8px;object-fit:cover" loading="lazy" width="56" height="56" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22 viewBox=%220 0 56 56%22><rect width=%2256%22 height=%2256%22 rx=%228%22 fill=%22%230f1724%22/></svg>'" />
+          <div>
+            <strong>Nguyễn Đông Nhật</strong><br>
+            <span class="muted">Frontend • UX</span>
+          </div>
+        </div>
+
+        <p>Accessibility không chỉ là tuân thủ luật định — nó giúp tiếp cận nhiều người dùng hơn và cải thiện trải nghiệm cho tất cả. Bắt đầu với các bước cơ bản: dùng semantic HTML, đảm bảo trên bàn phím có thể điều hướng, và cung cấp text thay thế cho hình ảnh.</p>
+
+        <p>Sử dụng các công cụ kiểm tra như Lighthouse và NVDA để phát hiện vấn đề. Lưu ý contrast, labels cho form, và thông báo ARIA cho component động để hỗ trợ screen reader.</p>
+
+        <p>Thực hành accessibility khi thiết kế từ đầu sẽ rẻ hơn và hiệu quả hơn so với sửa lỗi sau này. Hãy thêm kiểm tra accessibility vào CI hoặc checklist code review của dự án.</p>
+
+        <p style="margin-top:18px"><a href="/index.html#blog">← Quay lại Blog</a></p>
+      </article>
+    </main>
+
+    <footer>
+      <div class="muted">© <span id="year"></span> Nguyễn Đông Nhật • <a href="https://github.com/username">GitHub</a> • <a href="/rss.xml">RSS</a></div>
+    </footer>
+  </div>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

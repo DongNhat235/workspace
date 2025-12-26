@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Tối ưu hiệu năng web cho trang tĩnh" />
+  <title>Tối ưu hiệu năng web cho trang tĩnh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #98a0b3;
+      --accent: #6c8cff;
+      --glass: rgba(255,255,255,0.03);
+      --radius: 12px;
+      --maxw: 1000px;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: dark;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071027 0%,var(--bg) 100%);color:#e6eef8}
+    a{color:var(--accent);text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-weight:700;font-size:1.1rem}
+    nav{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;font-weight:600;border:0}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.45)}
+    .muted{color:var(--muted);font-size:0.95rem}
+    footer{padding:32px 0;color:var(--muted);text-align:center;font-size:0.9rem}
+    .author{display:flex;gap:12px;align-items:center;margin:12px 0}
+    @media (max-width:840px){nav{display:none}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand"><a href="/" style="color:inherit;text-decoration:none">Nguyễn Đông Nhật</a></div>
+      <nav>
+        <a href="/#about">About</a>
+        <a href="/index.html#blog">Blog</a>
+        <a href="/index.html#projects">Projects</a>
+        <a href="/index.html#contact" class="btn">Contact</a>
+      </nav>
+    </header>
+
+    <main style="margin:32px 0">
+      <article class="card">
+        <div class="muted">26 Dec 2025 • Web</div>
+        <p class="post-tags" style="margin-top:8px"><strong>Tags:</strong> <span class="tag">Performance</span> <span class="tag">Web</span></p>
+        <h1>Tối ưu hiệu năng web cho trang tĩnh</h1>
+
+        <div class="author">
+          <img src="../avatar.jpg" alt="Nguyễn Đông Nhật — Ảnh đại diện" style="width:56px;height:56px;border-radius:8px;object-fit:cover" loading="lazy" width="56" height="56" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22 viewBox=%220 0 56 56%22><rect width=%2256%22 height=%2256%22 rx=%228%22 fill=%22%230f1724%22/></svg>'" />
+          <div>
+            <strong>Nguyễn Đông Nhật</strong><br>
+            <span class="muted">Kỹ sư phần mềm • Viết blog</span>
+          </div>
+        </div>
+
+        <p>Trang tĩnh có thể rất nhanh nếu tối ưu đúng cách. Một số bước thực tế bạn có thể áp dụng ngay: nén ảnh, dùng định dạng hiện đại (WebP), và giảm kích thước tài nguyên CSS/JS.</p>
+
+        <p>Thiết lập cache (Cache-Control) cho tài nguyên tĩnh, dùng CDN nếu có khách truy cập từ nhiều vùng, và tận dụng preconnect/preload cho tài nguyên quan trọng để giảm thời gian tải đầu tiên.</p>
+
+        <p>Sử dụng Lighthouse hoặc WebPageTest để đo chỉ số (LCP, FID, CLS) và ưu tiên tối ưu những điểm đau nhất. Những cải tiến nhỏ thường đem lại tác động lớn về trải nghiệm người dùng.</p>
+
+        <p style="margin-top:18px"><a href="/index.html#blog">← Quay lại Blog</a></p>
+      </article>
+    </main>
+
+    <footer>
+      <div class="muted">© <span id="year"></span> Nguyễn Đông Nhật • <a href="https://github.com/username">GitHub</a> • <a href="/rss.xml">RSS</a></div>
+    </footer>
+  </div>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

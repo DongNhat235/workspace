@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Portfolio & blog cá nhân - Nguyễn Đông Nhật" />
+  <meta property="og:title" content="Nguyễn Đông Nhật - Portfolio" />
+  <meta property="og:description" content="Giới thiệu, dự án và blog của tôi." />
+  <title>Nguyễn Đông Nhật — Portfolio</title>
+
+  <!-- Google Font (tùy chọn) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Fav icon placeholder -->
+  <link rel="icon" href="favicon.ico" />
+
+  <style>
+    :root {
+      /* Light theme (only) */
+      --bg: #f7fbff;
+      --card: #ffffff;
+      --text: #0f1724;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --glass: rgba(2,6,23,0.03);
+      --radius: 12px;
+      --maxw: 1000px;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: light;
+    }
+
+    html{scroll-behavior:smooth}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);color:var(--text)}
+    a{color:var(--accent);text-decoration:none}
+    .home-btn{background:transparent;border:0;color:var(--muted);padding:6px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none}
+    .home-btn:hover{color:var(--accent)}
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+    /* Make header fixed so it remains visible on scroll */
+    header{position:fixed;left:0;right:0;top:0;z-index:999;background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);border-bottom:1px solid rgba(16,24,40,0.06);transition:background .2s ease,box-shadow .2s ease,border-color .2s ease;padding:0}
+    header .container{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;max-width:var(--maxw);margin:0 auto}
+    /* Prevent page content from being hidden behind the fixed header */
+    body{padding-top:64px}
+    header.scrolled{background:rgba(255,255,255,0.98);box-shadow:0 10px 30px rgba(2,6,23,0.08);border-bottom-color:rgba(16,24,40,0.08)}
+    header .brand{font-weight:700;font-size:1.1rem;color:var(--text)}
+    header nav a{color:var(--text);font-weight:600}
+    header nav a:hover{color:var(--accent)}
+    .brand{font-weight:700;font-size:1.1rem}
+    nav{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;font-weight:600;border:0}
+    .hero{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:center;margin:36px 0}
+    .hero .intro h1{margin:0;font-size:2.1rem}
+    .hero .intro p{color:var(--muted);margin-top:8px;line-height:1.5}
+    .avatar{width:200px;height:200px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#f0f5ff,#e6eef8);display:flex;align-items:center;justify-content:center}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+    section {margin:64px 0;scroll-margin-top:96px}
+    h2{font-size:1.6rem;margin:0 0 18px 0;letter-spacing:0.2px;font-weight:700}
+    h3{font-size:1.125rem;margin:0 0 10px 0;font-weight:600}
+    .grid {display:grid;gap:20px}
+    /* Show blog posts in a 3-column grid on wide screens */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 8px 24px rgba(2,6,23,0.06)}
+    @media (max-width:1000px){
+      .cards{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:600px){
+      .cards{grid-template-columns:1fr}
+    }
+    .card h3{margin:0 0 12px 0;font-size:1.125rem}
+    .muted{color:var(--muted);font-size:0.98rem;line-height:1.7} 
+
+    footer{padding:32px 0;color:var(--muted);text-align:center;font-size:0.9rem}
+
+    /* transitions */
+    body, .card, .avatar, .btn, a {transition: background-color .25s ease, color .25s ease, box-shadow .25s ease}
+
+    /* Responsive */
+    @media (max-width:840px){
+      .hero{grid-template-columns:1fr}
+      .avatar{width:160px;height:160px;margin:0 auto}
+      nav{display:none}
+      h2{font-size:1.35rem}
+      h3{font-size:1rem}
+      section{margin:36px 0;scroll-margin-top:64px}
+    }
+    /* small helpers */
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{background:var(--glass);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:0.9rem}
+    .post-card .meta{font-size:0.85rem;color:var(--muted);margin-bottom:8px}
+
+    /* Blog tag filters & search */
+    .blog-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+    .tag-filters{display:flex;gap:8px;flex-wrap:wrap}
+    .tag-filter-btn{background:transparent;border:1px solid rgba(2,6,23,0.06);padding:6px 10px;border-radius:999px;cursor:pointer;font-weight:600}
+    .tag-filter-btn.active{background:var(--accent);color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(6,166,188,0.08)}
+    #blog-search{padding:8px 12px;border-radius:8px;border:1px solid rgba(2,6,23,0.06);min-width:200px}
+
+    @media (max-width:600px){
+      .blog-controls{flex-direction:column;align-items:flex-start}
+      #blog-search{width:100%}
+    }
+    .contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);background:transparent;color:inherit;margin-bottom:10px}
+
+    /* Skills section */
+    .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px}
+    .skill-col .skill-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .skill-col .skill-header .icon{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,#e6f7ff,#cff6f2);display:flex;align-items:center;justify-content:center;font-size:20px}
+    .skill{margin-bottom:14px}
+    .skill .skill-name{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-weight:600;color:var(--text)}
+    .skill .bar{background:rgba(2,6,23,0.06);height:12px;border-radius:999px;overflow:hidden}
+    .skill .bar .progress{height:100%;background:linear-gradient(90deg,#34d399,#06b6d4);width:0}
+    .skill .percent{background:#ffffff;border-radius:6px;padding:4px 6px;font-weight:700;color:var(--accent);font-size:0.85rem;box-shadow:0 8px 20px rgba(6,166,188,0.08)}
+
+    /* Interests slider */
+    .interests-slider{position:relative;margin-top:12px}
+    .interests-slider .slides{overflow:hidden}
+    .interests-slider .slides-inner{display:flex;transition:transform .5s ease}
+    .interests-slider .slide{min-width:100%;flex:0 0 100%;padding:22px 20px;box-sizing:border-box}
+    .interests-slider .slide .hero{display:flex;gap:18px;align-items:flex-start}
+    .interests-slider .slide .hero .thumb{width:280px;height:160px;border-radius:12px;background-size:cover;background-position:center;flex-shrink:0}
+    .interests-slider .slide .hero .desc{flex:1}
+    .interests-slider .tags{margin-top:12px}
+    .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:transparent;border:1px solid rgba(16,24,40,0.06);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .slider-btn.prev{left:12px}
+    .slider-btn.next{right:12px}
+    .dots{display:flex;gap:8px;justify-content:center;margin-top:12px}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(2,6,23,0.06);cursor:pointer}
+    .dot.active{background:var(--accent);box-shadow:0 6px 18px rgba(6,166,188,0.08)}
+
+    @media (max-width:840px){
+      .skills-grid{grid-template-columns:1fr}
+      nav{display:none}
+      .interests-slider .slide .hero{flex-direction:column}
+      .interests-slider .slide .hero .thumb{width:100%;height:180px}
+    }
+  </style>
+</head>
+<body id="top">
+  <header>
+    <div class="container header-inner">
+      <div class="brand">Nguyễn Đông Nhật</div>
+      <nav>
+        <a href="#top" class="home-btn" aria-label="Trang chủ" title="Trang chủ">🏠</a>
+        <a href="#about">Về tôi</a>
+        <a href="#education">Học vấn</a>
+        <a href="#interests">Sở thích</a>
+        <a href="#skills">Kỹ năng</a>
+        <a href="#blog">Blog</a>
+        <a href="#projects">Dự án</a>
+        <a href="#contact" class="btn">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- HERO -->
+    <main class="hero">
+      <div class="intro">
+        <h1>Xin chào — Mình là <strong>Nguyễn Đông Nhật</strong></h1>
+        <p class="muted">Kỹ sư phần mềm • Frontend / Backend • Viết blog về phát triển web và dự án cá nhân.</p>
+        <p>
+          <a class="btn" href="#projects">Xem dự án</a>
+        </p>
+
+        <!-- quick skills -->
+        <div style="margin-top:20px">
+          <div class="tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">💡 Open for collaborations</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="avatar">
+        <!-- Ảnh đại diện dự án -->
+        <img src="avatar.jpg" alt="Nguyễn Đông Nhật — Ảnh đại diện" loading="lazy" width="200" height="200"
+             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22 viewBox=%220 0 200 200%22><rect width=%22200%22 height=%22200%22 rx=%2216%22 fill=%22%230f1724%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23ffffff%22 font-size=%2224%22 font-family=%22Inter, Arial, sans-serif%22>Avatar</text></svg>'" />
+      </div>
+    </main>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="card">
+        <h3>Về tôi</h3>
+        <p class="muted">
+          Xin chào — mình là <strong>Nguyễn Đông Nhật</strong>, một Kỹ sư phần mềm đam mê xây dựng sản phẩm web và ứng dụng di động. Hiện đang theo học ngành Kỹ thuật phần mềm tại HUTECH, mình tập trung phát triển full‑stack với React và Node.js, đồng thời xây dựng giải pháp mobile. Mình quan tâm sâu đến AI/ML và tối ưu hiệu năng web để mang lại trải nghiệm người dùng nhanh và mượt. Ngoài ra, mình thường viết blog chia sẻ hướng dẫn thực tế, phân tích kỹ thuật và bài học từ dự án để giúp cộng đồng developer tiến bộ nhanh hơn.
+        </p>
+        <ul class="muted" style="margin-top:8px; padding-left:18px">
+          <li>Email: <a href="mailto:ndongnhat@gmail.com">ndongnhat@gmail.com</a></li>
+          <li>Điện thoại: <a href="tel:+84336047029">033 604 7029</a></li>
+          <li>Ngày sinh: 22/01/2004</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <h2>Học vấn</h2>
+      <div class="card">
+        <h3>Đại học Công nghệ HUTECH — Kỹ thuật phần mềm</h3>
+        <p class="muted">Tập trung: Web Development, Mobile App và AI/ML.</p>
+        <ul class="muted" style="margin-top:8px; padding-left:18px">
+          <li>Khóa học tiêu biểu: Lập trình Web, Phát triển Ứng dụng Di động, Thuật toán & Data Structures</li>
+          <li>Năm: 4</li>
+          <li>GPA: 3.6/4.0</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- INTERESTS -->
+    <section id="interests">
+      <h2>Sở thích</h2>
+      <div class="card">
+        <p class="muted">Một vài sở thích và hoạt động mình thường làm khi rảnh rỗi — bạn có thể chỉnh sửa theo ý muốn.</p>
+        <ul class="muted" style="margin-top:8px; padding-left:18px">
+          <li>Học & thử nghiệm công nghệ mới (AI/ML, Flutter, Web performance)</li>
+          <li>Nghe nhạc mỗi khi có cơ hội</li>
+          <li>Đọc sách và tìm tòi những cuốn sách hay</li>
+          <li>Chơi các tựa game online</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2>Kỹ năng</h2>
+      <div class="skills-grid">
+        <div class="card skill-col">
+          <div class="skill-header"><div class="icon">🖥️</div><h3>Frontend Development</h3></div>
+
+          <div class="skill">
+            <div class="skill-name">HTML/CSS <span class="percent">95%</span></div>
+            <div class="bar"><div class="progress" style="width:95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">JavaScript <span class="percent">90%</span></div>
+            <div class="bar"><div class="progress" style="width:90%"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">React <span class="percent">85%</span></div>
+            <div class="bar"><div class="progress" style="width:85%"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Vue.js <span class="percent">80%</span></div>
+            <div class="bar"><div class="progress" style="width:80%"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">TypeScript <span class="percent">75%</span></div>
+            <div class="bar"><div class="progress" style="width:75%"></div></div>
+          </div>
+        </div>
+
+        <div class="card skill-col">
+          <div class="skill-header"><div class="icon">🗄️</div><h3>Backend Development</h3></div>
+
+          <div class="skill">
+            <div class="skill-name">Node.js <span class="percent">85%</span></div>
+            <div class="bar"><div class="progress" style="width:85%"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Express.js <span class="percent">80%</span></div>
+            <div class="bar"><div class="progress" style="width:80%"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">MongoDB <span class="percent">75%</span></div>
+            <div class="bar"><div class="progress" style="width:75%"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">MySQL <span class="percent">80%</span></div>
+            <div class="bar"><div class="progress" style="width:80%"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">REST API <span class="percent">90%</span></div>
+            <div class="bar"><div class="progress" style="width:90%"></div></div>
+          </div>
+        </div>
+
+        <div class="card skill-col">
+          <div class="skill-header"><div class="icon">🛠️</div><h3>Tools & Others</h3></div>
+
+          <div class="skill">
+            <div class="skill-name">Git <span class="percent">90%</span></div>
+            <div class="bar"><div class="progress" style="width:90%"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Docker <span class="percent">70%</span></div>
+            <div class="bar"><div class="progress" style="width:70%"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Figma <span class="percent">75%</span></div>
+            <div class="bar"><div class="progress" style="width:75%"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Photoshop <span class="percent">80%</span></div>
+            <div class="bar"><div class="progress" style="width:80%"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Agile/Scrum <span class="percent">85%</span></div>
+            <div class="bar"><div class="progress" style="width:85%"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog">
+      <h2>Blog</h2>
+      <div class="blog-controls">
+        <div id="tag-filters" class="tag-filters" role="tablist" aria-label="Bộ lọc tag"></div>
+        <input id="blog-search" type="search" placeholder="Tìm kiếm bài viết..." aria-label="Tìm kiếm bài viết" />
+      </div>
+      <div class="cards">
+        <!-- Mỗi .card là 1 bài. Thay đổi tiêu đề, link và mô tả theo ý bạn -->
+        <article class="card post-card" data-tags="AI,Web">
+          <div class="meta">26 Dec 2025 • AI</div>
+          <h3><a href="posts/2025-12-26-ai-ung-dung.html">Trí tuệ nhân tạo: Xu hướng và ứng dụng ở Việt Nam</a></h3>
+          <p class="muted">Tổng quan về AI hiện nay và cách doanh nghiệp Việt Nam có thể ứng dụng để tăng hiệu suất và sáng tạo sản phẩm.</p>
+        </article>
+
+        <article class="card post-card" data-tags="Security,Web">
+          <div class="meta">26 Dec 2025 • Bảo mật</div>
+          <h3><a href="posts/2025-12-26-cybersecurity.html">An toàn thông tin: Những điều cơ bản cho devs và người dùng</a></h3>
+          <p class="muted">Những khái niệm, thói quen tốt và công cụ giúp giảm rủi ro bảo mật cho ứng dụng và cá nhân.</p>
+        </article>
+
+        <article class="card post-card" data-tags="Performance,Web">
+          <div class="meta">26 Dec 2025 • Web</div>
+          <h3><a href="posts/2025-12-26-web-performance.html">Tối ưu hiệu năng web cho trang tĩnh</a></h3>
+          <p class="muted">Các mẹo thực hành tối ưu kích thước, tải tài nguyên và giảm thời gian phản hồi cho website tĩnh.</p>
+        </article>
+
+        <article class="card post-card" data-tags="DevOps,Docker">
+          <div class="meta">26 Dec 2025 • DevOps</div>
+          <h3><a href="posts/2025-12-26-docker-devops.html">Docker & Docker Compose cho project nhỏ</a></h3>
+          <p class="muted">Hướng dẫn nhanh: Dockerfile nhẹ, Docker Compose cho dịch vụ phụ, và lưu ý về secrets khi deploy.</p>
+        </article>
+
+        <article class="card post-card" data-tags="TypeScript,Frontend">
+          <div class="meta">26 Dec 2025 • TypeScript</div>
+          <h3><a href="posts/2025-12-26-typescript-advanced.html">TypeScript nâng cao: tips & patterns</a></h3>
+          <p class="muted">Một số patterns và tips để giữ code TypeScript mạnh mẽ và dễ bảo trì khi dự án lớn lên.</p>
+        </article>
+
+        <article class="card post-card" data-tags="Accessibility,Web">
+          <div class="meta">26 Dec 2025 • Web</div>
+          <h3><a href="posts/2025-12-26-web-accessibility.html">Tiếp cận Accessibility (A11y) cho web developers</a></h3>
+          <p class="muted">Các bước cơ bản để cải thiện accessibility: semantic HTML, keyboard nav, contrast và ARIA.</p>
+        </article>
+
+        <article class="card post-card" data-tags="Performance,Images,Web">
+          <div class="meta">26 Dec 2025 • Web Performance</div>
+          <h3><a href="posts/2025-12-26-image-optimization.html">Tối ưu hình ảnh trên web: WebP, lazy loading và chiến lược</a></h3>
+          <p class="muted">Chiến lược chuyển đổi hình ảnh, lazy loading và responsive images để giảm thời gian tải.</p>
+        </article>
+
+        <article class="card post-card" data-tags="DevOps,CI/CD">
+          <div class="meta">26 Dec 2025 • DevOps</div>
+          <h3><a href="posts/2025-12-26-ci-cd.html">CI/CD cơ bản: từ Git tới deploy tự động</a></h3>
+          <p class="muted">Các bước để thiết lập pipeline: test, build, deploy và rollback strategy cho dự án nhỏ.</p>
+        </article>
+
+        <article class="card post-card" data-tags="React,Performance,Frontend">
+          <div class="meta">26 Dec 2025 • Frontend</div>
+          <h3><a href="posts/2025-12-26-react-performance.html">Tối ưu hiệu năng React: memo, code-splitting, virtualization</a></h3>
+          <p class="muted">Các kỹ thuật hữu ích để tối ưu React app: tránh re-render, lazy-load components và virtualization cho danh sách lớn.</p>
+        </article>
+
+      </div>
+      <p style="margin-top:12px;color:var(--muted)"><a href="posts/">Xem tất cả bài viết →</a></p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2>Dự án</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Trip Hotel — Full Stack Application</h3>
+          <p class="muted">Ứng dụng đặt phòng khách sạn gồm mobile app (Flutter) và backend (Node.js). Tính năng chính: xác thực (Email / Facebook / Google), tìm kiếm khách sạn, booking, thanh toán (tích hợp VNPay / MoMo), quản lý booking. <a href="https://github.com/CaoDinh-cnd04/trip-hotel-fullstack">GitHub</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card contact-form">
+        <p class="muted">Gửi tin nhắn: (tùy chọn dùng Formspree / Netlify Forms / mailto)</p>
+
+        <!-- Ví dụ dùng Formspree: thay YOUR_FORM_ID -->
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="text" name="name" placeholder="Họ và tên" required />
+          <input type="email" name="_replyto" placeholder="Email" required />
+          <textarea name="message" rows="5" placeholder="Nội dung" required></textarea>
+          <button class="btn" type="submit">Gửi</button>
+        </form>
+
+        <p class="muted" style="margin-top:12px">Hoặc email trực tiếp: <a href="mailto:ndongnhat@gmail.com">ndongnhat@gmail.com</a></p>
+        <p class="muted">Hoặc gọi: <a href="tel:+84336047029">033 604 7029</a></p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="muted">© <span id="year"></span> Nguyễn Đông Nhật • <a href="https://github.com/username">GitHub</a> • <a href="/rss.xml">RSS</a></div>
+    </footer>
+  </div>
+
+  <script>
+    // small helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Make header sticky and add a subtle shadow when user scrolls
+    (function(){
+      const header = document.querySelector('header');
+      if(!header) return;
+      const onScroll = () => {
+        if(window.scrollY > 8) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
+
+      // Keep body padding equal to header height (handles responsive changes)
+      const setBodyPadding = () => {
+        const h = header.getBoundingClientRect().height;
+        document.body.style.paddingTop = h + 'px';
+      };
+      setBodyPadding();
+      window.addEventListener('resize', setBodyPadding);
+    })();
+
+    // Interests slider: controls, dots, autoplay
+    (function(){
+      const slider = document.querySelector('.interests-slider');
+      if(!slider) return;
+      const inner = slider.querySelector('.slides-inner');
+      const slides = Array.from(slider.querySelectorAll('.slide'));
+      const prev = slider.querySelector('.slider-btn.prev');
+      const next = slider.querySelector('.slider-btn.next');
+      const dots = Array.from(slider.querySelectorAll('.dot'));
+      let idx = 0;
+      const update = (i) => {
+        idx = (i + slides.length) % slides.length;
+        inner.style.transform = `translateX(-${idx * 100}%)`;
+        dots.forEach((d, j) => {
+          d.classList.toggle('active', j === idx);
+          d.setAttribute('aria-selected', j === idx ? 'true' : 'false');
+        });
+      };
+      prev.addEventListener('click', () => update(idx - 1));
+      next.addEventListener('click', () => update(idx + 1));
+      dots.forEach((d, i) => d.addEventListener('click', () => update(i)));
+
+      // autoplay
+      let timer = setInterval(() => update(idx + 1), 5000);
+      slider.addEventListener('mouseenter', () => clearInterval(timer));
+      slider.addEventListener('mouseleave', () => timer = setInterval(() => update(idx + 1), 5000));
+
+      // keyboard navigation
+      slider.addEventListener('keydown', (e) => {
+        if(e.key === 'ArrowLeft') update(idx - 1);
+        if(e.key === 'ArrowRight') update(idx + 1);
+      });
+
+      update(0);
+    })();
+
+    // Optional: nếu muốn thêm tính năng mobile nav hoặc dynamic load posts, sửa ở đây.
+    // Blog tag filters and search
+    (function(){
+      const posts = Array.from(document.querySelectorAll('.post-card'));
+      if(!posts.length) return;
+      const tagSet = new Set();
+      posts.forEach(p => {
+        const tags = (p.dataset.tags || '').split(',').map(s => s.trim()).filter(Boolean);
+        p._tags = tags;
+        tags.forEach(t => tagSet.add(t));
+      });
+
+      const filters = document.getElementById('tag-filters');
+      const searchInput = document.getElementById('blog-search');
+      const tags = Array.from(tagSet).sort();
+
+      const makeBtn = (t) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'tag-filter-btn';
+        b.textContent = t;
+        b.setAttribute('aria-pressed','false');
+        b.addEventListener('click', () => {
+          // toggle active state (single-select)
+          if(b.classList.contains('active')){
+            b.classList.remove('active'); b.setAttribute('aria-pressed','false');
+            allBtn.classList.add('active'); allBtn.setAttribute('aria-pressed','true');
+          } else {
+            Array.from(filters.querySelectorAll('.tag-filter-btn')).forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false')});
+            b.classList.add('active'); b.setAttribute('aria-pressed','true');
+          }
+          applyFilter();
+        });
+        return b;
+      };
+
+      // All button
+      const allBtn = document.createElement('button');
+      allBtn.type='button'; allBtn.className='tag-filter-btn active'; allBtn.textContent='Tất cả'; allBtn.setAttribute('aria-pressed','true');
+      allBtn.addEventListener('click', ()=>{
+        Array.from(filters.querySelectorAll('.tag-filter-btn')).forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false')});
+        allBtn.classList.add('active'); allBtn.setAttribute('aria-pressed','true');
+        applyFilter();
+      });
+
+      filters.appendChild(allBtn);
+      tags.forEach(t => filters.appendChild(makeBtn(t)));
+
+      function applyFilter(){
+        const activeBtn = filters.querySelector('.tag-filter-btn.active');
+        let tag = null;
+        if(activeBtn && activeBtn.textContent !== 'Tất cả') tag = activeBtn.textContent;
+        const q = (searchInput && searchInput.value || '').trim().toLowerCase();
+        posts.forEach(p => {
+          const matchesTag = !tag || p._tags.includes(tag);
+          const title = p.querySelector('h3') ? p.querySelector('h3').textContent.toLowerCase() : '';
+          const desc = p.querySelector('.muted') ? p.querySelector('.muted').textContent.toLowerCase() : '';
+          const matchesSearch = !q || title.includes(q) || desc.includes(q);
+          p.style.display = (matchesTag && matchesSearch) ? '' : 'none';
+        });
+      }
+
+      if(searchInput){
+        searchInput.addEventListener('input', ()=>{
+          const active = filters.querySelector('.tag-filter-btn.active');
+          if(active && active.textContent !== 'Tất cả'){
+            active.classList.remove('active'); active.setAttribute('aria-pressed','false');
+            allBtn.classList.add('active'); allBtn.setAttribute('aria-pressed','true');
+          }
+          applyFilter();
+        });
+      }
+
+    })();
+  </script>
+</body>
+</html>
