@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Tối ưu hiệu năng React: memo, code-splitting, virtualization" />
+  <title>Tối ưu hiệu năng React</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0f1724;--card:#0b1220;--muted:#98a0b3;--accent:#6c8cff;--maxw:1000px;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color-scheme:dark }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071027 0%,var(--bg) 100%);color:#e6eef8}
+    a{color:var(--accent);text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.45)}
+    .muted{color:var(--muted);font-size:0.95rem}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <main style="margin:32px 0">
+      <article class="card">
+        <div class="muted">26 Dec 2025 • Frontend</div>
+        <p class="post-tags" style="margin-top:8px"><strong>Tags:</strong> <span class="tag">React</span> <span class="tag">Performance</span> <span class="tag">Frontend</span></p>
+        <h1>Tối ưu hiệu năng React: memo, code-splitting, virtualization</h1>
+        <p>Một vài kỹ thuật trực tiếp: dùng React.memo và useMemo để tránh re-render không cần thiết, tách bundle (code-splitting / lazy) để giảm kích thước đầu tiên, và dùng virtualization (react-window) cho danh sách dài.</p>
+        <p>Luôn đo (profiling, lighthouse) trước khi tối ưu, tránh tối ưu premature. Tối ưu images, fonts và critical CSS phối hợp với các kỹ thuật React giúp trải nghiệm mượt hơn.</p>
+        <p>Đối với SSR/SSG, cân nhắc hydration strategy và stream-rendering để cải thiện thời gian hiển thị nội dung đầu tiên.</p>
+        <p style="margin-top:18px"><a href="/index.html#blog">← Quay lại Blog</a></p>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

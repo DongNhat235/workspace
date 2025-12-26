@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="CI/CD cơ bản: từ Git tới deploy tự động" />
+  <title>CI/CD cơ bản: từ Git tới deploy tự động</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0f1724;--card:#0b1220;--muted:#98a0b3;--accent:#6c8cff;--maxw:1000px;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color-scheme:dark }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071027 0%,var(--bg) 100%);color:#e6eef8}
+    a{color:var(--accent);text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.45)}
+    .muted{color:var(--muted);font-size:0.95rem}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <main style="margin:32px 0">
+      <article class="card">
+        <div class="muted">26 Dec 2025 • DevOps</div>
+        <p class="post-tags" style="margin-top:8px"><strong>Tags:</strong> <span class="tag">DevOps</span> <span class="tag">CI/CD</span></p>
+        <h1>CI/CD cơ bản: từ Git tới deploy tự động</h1>
+        <p>CI/CD (Continuous Integration / Continuous Delivery) giúp tự động hóa quá trình kiểm thử và đưa code lên môi trường staging/production. Bắt đầu với pipeline đơn giản: chạy test, build artifact và deploy tự động khi merge vào nhánh chính.</p>
+        <p>Mẹo: giữ pipeline ngắn, chạy test quan trọng trước, cache dependencies để tăng tốc, và tạo rollback plan nếu deploy lỗi. Dùng GitHub Actions hoặc GitLab CI để bắt đầu nhanh chóng với templates có sẵn.</p>
+        <p>Với hạ tầng phức tạp hơn, cân nhắc việc triển khai blue/green hoặc canary để giảm rủi ro khi cập nhật production.</p>
+        <p style="margin-top:18px"><a href="/index.html#blog">← Quay lại Blog</a></p>
+      </article>
+    </main>
+  </div>
+</body>
+</html>
